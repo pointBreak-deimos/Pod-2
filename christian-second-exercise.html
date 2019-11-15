@@ -79,6 +79,8 @@
 
 <script src="jquery-2.2.4.js"></script>
 <script>
+
+    //set up variables
     var buttonColours = ["red", "blue", "green", "yellow"];
 
     var gamePattern = [];
@@ -87,6 +89,8 @@
     var started = false;
     var level = 0;
 
+
+    //start the game by pressing any key
     $(document).keypress(function() {
         if (!started) {
             $("#level-title").text("Level " + level);
@@ -95,6 +99,7 @@
         }
     });
 
+    //Checks user button press and animates button press.  Could not get sound to work
     $(".btn").click(function() {
 
         var userChosenColour = $(this).attr("id");
@@ -106,6 +111,7 @@
         checkAnswer(userClickedPattern.length-1);
     });
 
+    // check if button press is equal to what activates otherwise red screen
     function checkAnswer(currentLevel) {
 
         if (gamePattern[currentLevel] === userClickedPattern[currentLevel]) {
@@ -127,7 +133,7 @@
         }
     }
 
-
+    // makes the level go up when you get the sequence right and randomizes what lights up.  Again could not get sound to work
     function nextSequence() {
         userClickedPattern = [];
         level++;
@@ -140,6 +146,7 @@
         playSound(randomChosenColour);
     }
 
+    //function for animated press
     function animatePress(currentColor) {
         $("#" + currentColor).addClass("pressed");
         setTimeout(function () {
@@ -147,11 +154,13 @@
         }, 100);
     }
 
+    //sound doesnt work :(
     function playSound(name) {
         var audio = new Audio(name + ".mp3");
         audio.play();
     }
 
+    //starts game over
     function startOver() {
         level = 0;
         gamePattern = [];
