@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html>
+<style>
+
+    p {
+        font-size: 20px;
+    }
+
+    p::selection {
+        background: white;
+    }
+    p::-moz-selection {
+        background: white;
+    }
+
+    h1::selection {
+        background: white;
+    }
+    h1::-moz-selection {
+        background: white;
+    }
+
+    div::selection {
+        background: white;
+    }
+    div::-moz-selection {
+        background: white;
+    }
+
+    #refresh::selection {
+        background: burlywood;
+    }
+    #refresh::-moz-selection {
+        background: burlywood;
+    }
+
+    #gate::selection {
+        background: white;
+    }
+    #gate::-moz-selection {
+        background: white;
+    }
+
+    .container{
+        position: fixed;
+        top: 300px;
+        left: 450px;
+    }
+    #match {
+        position: fixed;
+        top: 340px;
+        left: 120px;
+
+    }
+
+    #match2 {
+        position: fixed;
+        top: 352px;
+        left: 105px;
+
+    }
+
+    #match3 {
+        position: fixed;
+        top: 350px;
+        left: 560px;
+
+    }
+
+    #match4 {
+        position: fixed;
+        top: 352px;
+        left: 337px;
+
+    }
+
+    #match5 {
+        position: fixed;
+        top: 453px;
+        left: 778px;
+
+    }
+
+    #match6 {
+        position: absolute;
+        top: 50px;
+        left: 314px;
+
+    }
+
+    #match7 {
+        position: fixed;
+        top: 223px;
+        left: 778px;
+
+    }
+
+    #match8 {
+        position: fixed;
+        top: 350px;
+        left: 995px;
+
+    }
+
+    .rotate {
+        transform:  translateX(-50%) translateY(-50%) rotate(-90deg);
+    }
+
+    .match {
+        position: absolute;
+        z-index: 9;
+        background-color: #f1f1f1;
+        text-align: center;
+        border: 1px solid #d3d3d3;
+    }
+
+
+    #mydivheader {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 200px;
+        height: 20px;
+        cursor: move;
+        z-index: 10;
+        background-image: linear-gradient(to right, burlywood 85%, red);
+        color: #fff;
+    }
+
+
+
+    #gate {
+        margin-bottom: 100px;
+        width: 50px;
+        height: 35px;
+        position: fixed;
+        top: 315px;
+        left: 535px;
+    }
+
+    #refresh {
+        position: fixed;
+        bottom: 80px;
+        width: 200px;
+        height: 100px;
+        background-color: burlywood;
+        font-size: 30px;
+    }
+
+</style>
+<body>
+<h1>The Best Eleven</h1>
+
+<p>These guys love Soccer, but their team is full of such useless players that they're known as 'H10' (the 'Hopeless Ten') Yes, they only have ten players. Can you move one match to turn them into an 11-player team? Click and drag the match to move it.</p>
+
+<img src="White-Square.jpg" id="gate" class="droppable">
+
+<div class="container">
+    <div id="match" class="match">
+        <div id="mydivheader"></div>
+    </div>
+
+    <div id="match2" class="match rotate">
+        <div id="mydivheader"></div>
+    </div>
+
+    <div id="match3" class="match rotate">
+        <div id="mydivheader"></div>
+    </div>
+
+    <div id="match4" class="match rotate">
+        <div id="mydivheader"></div>
+    </div>
+
+    <div id="match5" class="match">
+        <div id="mydivheader"></div>
+    </div>
+
+    <div id="match6" class="match rotate">
+        <div id="mydivheader"></div>
+    </div>
+
+    <div id="match7" class="match">
+        <div id="mydivheader"></div>
+    </div>
+
+    <div id="match8" class="match rotate">
+        <div id="mydivheader"></div>
+    </div>
+</div>
+
+
+
+<button id="refresh" type="submit"  onClick="refreshPage()">Retry</button>
+
+<script>
+    //Make the DIV element draggable:
+    dragElement(document.getElementById("match"));
+    dragElement(document.getElementById("match2"));
+    dragElement(document.getElementById("match3"));
+    dragElement(document.getElementById("match4"));
+    dragElement(document.getElementById("match5"));
+    dragElement(document.getElementById("match6"));
+    dragElement(document.getElementById("match7"));
+    dragElement(document.getElementById("match8"));
+
+
+
+    function dragElement(elmnt) {
+        var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+        if (document.getElementById(elmnt.id)) {
+            /* if present, the header is where you move the DIV from:*/
+            document.getElementById(elmnt.id).onmousedown = dragMouseDown;
+        } else {
+            /* otherwise, move the DIV from anywhere inside the DIV:*/
+            elmnt.onmousedown = dragMouseDown;
+        }
+
+        function dragMouseDown(e) {
+            e = e || window.event;
+            e.preventDefault();
+            // get the mouse cursor position at startup:
+            pos3 = e.clientX;
+            pos4 = e.clientY;
+            document.onmouseup = closeDragElement;
+            // call a function whenever the cursor moves:
+            document.onmousemove = elementDrag;
+        }
+
+        function elementDrag(e) {
+            e = e || window.event;
+            e.preventDefault();
+            // calculate the new cursor position:
+            pos1 = pos3 - e.clientX;
+            pos2 = pos4 - e.clientY;
+            pos3 = e.clientX;
+            pos4 = e.clientY;
+            // set the element's new position:
+            elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+            elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+        }
+
+        function closeDragElement() {
+            /* stop moving when mouse button is released:*/
+            document.onmouseup = null;
+            document.onmousemove = null;
+        }
+    }
+
+    let currentDroppable = null;
+
+    match.onmousedown = function(event) {
+
+        let shiftX = event.clientX - match.getBoundingClientRect().left;
+        let shiftY = event.clientY - match.getBoundingClientRect().top;
+
+        match.style.position = 'absolute';
+        match.style.zIndex = 1000;
+        document.body.append(match);
+
+        moveAt(event.pageX, event.pageY);
+
+        function moveAt(pageX, pageY) {
+            match.style.left = pageX - shiftX + 'px';
+            match.style.top = pageY - shiftY + 'px';
+        }
+
+        function onMouseMove(event) {
+            moveAt(event.pageX, event.pageY);
+
+            match.hidden = true;
+            let elemBelow = document.elementFromPoint(event.clientX, event.clientY);
+            match.hidden = false;
+
+            if (!elemBelow) return;
+
+            let droppableBelow = elemBelow.closest('.droppable');
+            if (currentDroppable != droppableBelow) {
+                if (currentDroppable) { // null when we were not over a droppable before this event
+                    leaveDroppable(currentDroppable);
+                }
+                currentDroppable = droppableBelow;
+                if (currentDroppable) { // null if we're not coming over a droppable now
+                    // (maybe just left the droppable)
+                    enterDroppable(currentDroppable);
+
+                    match.onmouseup = function() {
+                        document.removeEventListener('mousemove', onMouseMove);
+                        match.onmouseup = null;
+                        return alert("You win!")
+
+                    };
+
+                }
+            }
+        }
+
+        document.addEventListener('mousemove', onMouseMove);
+
+        match.onmouseup = function() {
+            document.removeEventListener('mousemove', onMouseMove);
+            match.onmouseup = null;
+
+        };
+    };
+
+    function enterDroppable(elem) {
+        elem.style = 'background-color: white';
+    }
+
+    function leaveDroppable(elem) {
+        elem.style.background = '';
+
+    }
+
+    match.ondragstart = function() {
+        return false;
+    };
+
+    function refreshPage(){
+        window.location.reload();
+    }
+
+
+</script>
+
+</body>
+</html>
