@@ -3,11 +3,19 @@
 ### add the problems to the README. WE can all call the problems we will do from there.
 
 
-
+# Exercises from Christian
 # Exercise 1 - Simon Says Exercise
-# Christian Crousser
+
+
+# Exercise 2 - Puzzle
+
+#Exercises from Christian Week 2
+
+# Exercise 1 - 
 
 # Exercise 2 - 
+
+# Exercise 3 - 
 
 
 # Exercises from Andrew
